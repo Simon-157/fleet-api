@@ -44,11 +44,8 @@ func Start() {
 	flightRouter.RegisterRoutes(router)
 	reportRouter.RegisterRoutes(router)
 
-	// Run the server
+	// Starting the server
 	if err := router.Run(":8080"); err != nil {
 		log.Fatalf("failed to run server: %v", err)
 	}
 }
-
-
-// *447*24#
