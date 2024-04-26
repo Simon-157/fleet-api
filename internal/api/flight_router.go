@@ -20,6 +20,7 @@ func NewFlightRouter(flightService service.FlightService) *FlightRouter {
 func (r *FlightRouter) RegisterRoutes(router *gin.Engine) {
 	group := router.Group("/api/flight")
 	group.POST("/", r.handler.CreateFlight)
+	group.GET("/", r.handler.GetFlights)
 	group.GET("/:id", r.handler.GetFlightByID)
 	group.PUT("/:id", r.handler.UpdateFlight)
 	group.DELETE("/:id", r.handler.DeleteFlight)

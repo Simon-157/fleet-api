@@ -40,6 +40,15 @@ func (s *AircraftService) CreateAircraft(aircraft *model.Aircraft, flightId int)
     return nil
 }
 
+//get all aircrafts
+func (s *AircraftService) GetAircrafts() ([]model.Aircraft, error) {
+    aircrafts, err := s.aircraftRepo.GetAircrafts()
+    if err != nil {
+        return nil, errors.Wrap(err, "failed to get aircrafts")
+    }
+    return aircrafts, nil
+}
+
 func (s *AircraftService) GetAircraftByID(id int) (*model.Aircraft, error) {
     aircraft, err := s.aircraftRepo.GetAircraftByID(id)
     if err != nil {
@@ -63,11 +72,3 @@ func (s *AircraftService) DeleteAircraft(id int) error {
     }
     return nil
 }
-
-// func (s *AircraftService) GetAircrafts() ([]model.Aircraft, error) {
-// 	aircrafts, err := s.aircraftRepo.GetAircrafts()
-// 	if err != nil {
-// 		return nil, errors.Wrap(err, "failed to get aircrafts")
-// 	}
-// 	return aircrafts, nil
-// }

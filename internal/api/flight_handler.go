@@ -36,6 +36,18 @@ func (h *FlightHandler) CreateFlight(c *gin.Context) {
 	c.JSON(http.StatusCreated, flight)
 }
 
+// GetFlights handles the retrieval of all flights.
+func (h *FlightHandler) GetFlights(c *gin.Context) {
+	flights, err := h.flightService.GetFlights()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to get flights", "message": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, flights)
+}
+
+
+
 // GetFlightByID handles the retrieval of a flight by ID.
 func (h *FlightHandler) GetFlightByID(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))

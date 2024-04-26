@@ -41,6 +41,23 @@ func (r *FlightRepository) CreateFlight(flight *model.Flight) error {
 	
 }
 
+func (r *FlightRepository) GetFlights() ([]model.Flight, error) {
+	rows, err := r.db.Query("SELECT id, departure_airport, arrival_airport, departure_datetime, arrival_datetime, aircraft_id FROM flight")
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to get flights")
+	}
+	defer rows.Close()
+	var flights []model.Flight
+	for rows.Next() {
+		var flight model.Flight
+		if err := rows.Scan(&flight.ID, &flight.DepartureAirport, &flight.ArrivalAirport, &flight.DepartureDatetime, &flight.ArrivalDatetime, &flight.AircraftID); err != nil {
+			return nil, errors.Wrap(err, "failed to scan flight")
+		}
+		flights = append(flights, flight)
+	}
+	return flights, nil
+}
+
 func (r *FlightRepository) GetFlightByID(id int) (*model.Flight, error) {
     var flight model.Flight
     err := r.db.QueryRow("SELECT id, departure_airport, arrival_airport, departure_datetime, arrival_datetime, aircraft_id FROM flight WHERE id = $1", id).

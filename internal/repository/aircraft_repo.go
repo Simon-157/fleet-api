@@ -25,6 +25,25 @@ func (r *AircraftRepository) CreateAircraft(aircraft *model.Aircraft) error {
     return nil
 }
 
+// get all aircrafts    
+
+func (r *AircraftRepository) GetAircrafts() ([]model.Aircraft, error) {
+    rows, err := r.db.Query("SELECT id, serial_number, manufacturer FROM aircraft")
+    if err != nil {
+        return nil, errors.Wrap(err, "failed to get aircrafts")
+    }
+    defer rows.Close()
+    var aircrafts []model.Aircraft
+    for rows.Next() {
+        var aircraft model.Aircraft
+        if err := rows.Scan(&aircraft.ID, &aircraft.SerialNumber, &aircraft.Manufacturer); err != nil {
+            return nil, errors.Wrap(err, "failed to scan aircraft")
+        }
+        aircrafts = append(aircrafts, aircraft)
+    }
+    return aircrafts, nil
+}
+
 func (r *AircraftRepository) GetAircraftByID(id int) (*model.Aircraft, error) {
     var aircraft model.Aircraft
     err := r.db.QueryRow("SELECT id, serial_number, manufacturer FROM aircraft WHERE id = $1", id).

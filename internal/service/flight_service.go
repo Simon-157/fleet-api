@@ -34,6 +34,14 @@ func (s *FlightService) CreateFlight(flight *model.Flight) error {
 	return nil
 }
 
+func (s *FlightService) GetFlights() ([]model.Flight, error) {
+    flights, err := s.flightRepo.GetFlights()
+    if err != nil {
+        return nil, errors.Wrap(err, "failed to get flights")
+    }
+    return flights, nil
+}
+
 func (s *FlightService) GetFlightByID(id int) (*model.Flight, error) {
     flight, err := s.flightRepo.GetFlightByID(id)
     if err != nil {

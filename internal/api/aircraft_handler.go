@@ -37,6 +37,16 @@ func (h *AircraftHandler) CreateAircraft(c *gin.Context) {
 	c.JSON(http.StatusCreated, aircraft)
 }
 
+//get all aircrafts
+func (h *AircraftHandler) GetAircrafts(c *gin.Context) {
+	aircrafts, err := h.aircraftService.GetAircrafts()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to get aircrafts", "message": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, aircrafts)
+}
+
 func (h *AircraftHandler) GetAircraftByID(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {

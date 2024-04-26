@@ -18,6 +18,7 @@ func (r *AircraftRouter) RegisterRoutes(router *gin.Engine) {
 	group := router.Group("/api/aircraft")
 	group.POST("/", r.handler.CreateAircraft)
 	group.GET("/:id", r.handler.GetAircraftByID)
+	group.GET("/", r.handler.GetAircrafts)
 	group.PUT("/:id", r.handler.UpdateAircraft)
 	group.DELETE("/:id", r.handler.DeleteAircraft)
 

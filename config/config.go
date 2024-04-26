@@ -34,11 +34,11 @@ type Config struct {
 
 func LoadConfig() *Config {
     return &Config{
-        DBHost:     getEnv("DB_HOST", "fleet-db.postgres.database.azure.com"),
-        DBPort:     getEnv("DB_PORT", "5432"),
-        DBUser:     getEnv("DB_USER", "fleet_admin"),
-        DBPassword: getEnv("DB_PASSWORD", "API_manager+"),
-        DBName:     getEnv("DB_NAME", "fleet"),
+        DBHost:     getEnv("DB_HOST", "******"),
+        DBPort:     getEnv("DB_PORT", "*****"),
+        DBUser:     getEnv("DB_USER", "****"),
+        DBPassword: getEnv("DB_PASSWORD", "***"),
+        DBName:     getEnv("DB_NAME", "***"),
 
     }
 }
