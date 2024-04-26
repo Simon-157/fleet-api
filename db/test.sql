@@ -1,4 +1,3 @@
-
 SELECT 
   departure_airport,
   COUNT(*) AS in_flight_aircraft,
@@ -17,6 +16,3 @@ FROM (
   WHERE tst BETWEEN '2024-05-01T00:00:00Z' AND '2024-05-31T23:59:59Z'
 ) AS flight_data
 GROUP BY departure_airport;
-
-
-

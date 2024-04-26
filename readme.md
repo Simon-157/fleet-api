@@ -17,6 +17,33 @@ Welcome to the Fleet API project! This API serves as the backend for managing fl
 
 This API provides functionalities for managing flights, aircraft, and reports within a fleet management system.
 
+## Databse Setup
+NB: No need if you want to use the deployed api [https://fleet-api-awdj.onrender.com/].
+
+To run the Fleet API locally, you will need to set up a database.
+
+To set up the database locally, follow these steps:
+
+1. Ensure you have PostgreSQL installed on your machine. If not, download and install it from [PostgreSQL Downloads](https://www.postgresql.org/download/).
+
+2. Create a new PostgreSQL database using the following command:
+   ```bash
+   createdb -U postgres dbname
+
+3. Navigate to the project directory:
+   ```bash
+   cd fleet_api/db
+   ```
+4. Modify the sql connection string in the migration code (main.go) to match your PostgreSQL credentials
+"user=username password=password dbname=fleet sslmode=disable"
+
+5. Run the database migrations while in the db dir:
+   ```bash
+   go run main.go
+   ```
+   
+6. The locat config file and change the db credentials as needed
+
 ## Installation
 
 To install and run the Fleet API locally, follow these steps:
@@ -66,8 +93,9 @@ Alternatively, you can run the Fleet API using Docker. Follow these steps:
    docker run -p 5000:5000 fleet-api
    ```
 
+
 ## API Endpoints
-## API Endpoints
+For quick testing of the API, you can use the following endpoints with the deployed base URL of `https://fleet-api-awdj.onrender.com/`.
 
 | Endpoint                   | Method | Description                         | Query Params                          | Required Body Content                 |
 |----------------------------|--------|-------------------------------------|---------------------------------------|--------------------------------------|
@@ -85,7 +113,8 @@ Alternatively, you can run the Fleet API using Docker. Follow these steps:
 | `/api/report/departure_airport`             | GET    | Retrieve all                |start_time and end_time                                 | N/A                                  |
 
 ## Sample Testing with Postman
-## API Endpoints
+can replace localhost with the base url `https://fleet-api-awdj.onrender.com/`.
+## API Endpoints 
 
 ### Aircraft Endpoints:
 

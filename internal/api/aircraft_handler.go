@@ -47,6 +47,7 @@ func (h *AircraftHandler) GetAircrafts(c *gin.Context) {
 	c.JSON(http.StatusOK, aircrafts)
 }
 
+// GetAircraftByID retrieves an aircraft by its ID
 func (h *AircraftHandler) GetAircraftByID(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -64,6 +65,7 @@ func (h *AircraftHandler) GetAircraftByID(c *gin.Context) {
 }
 
 
+// UpdateAircraft updates an existing aircraft
 func (h *AircraftHandler) UpdateAircraft(c *gin.Context) {
 	var aircraft model.Aircraft
 	id, err := strconv.Atoi(c.Param("id"))
@@ -88,6 +90,7 @@ func (h *AircraftHandler) UpdateAircraft(c *gin.Context) {
 }
 
 
+// DeleteAircraft deletes an existing aircraft
 func (h *AircraftHandler) DeleteAircraft(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
